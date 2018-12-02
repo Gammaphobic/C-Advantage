@@ -1,0 +1,14 @@
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Lesson1\Asteroids\Asteroids\obj\Debug\Asteroids.csprojResolveAssemblyReference.cache
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Lesson1\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.CoreCompileInputs.cache
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Lesson1\Asteroids\Asteroids\bin\Debug\Asteroids.exe.config
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Lesson1\Asteroids\Asteroids\bin\Debug\Asteroids.exe
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Lesson1\Asteroids\Asteroids\bin\Debug\Asteroids.pdb
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Lesson1\Asteroids\Asteroids\obj\Debug\Asteroids.exe
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Lesson1\Asteroids\Asteroids\obj\Debug\Asteroids.pdb
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Homework\Asteroids\Asteroids\bin\Debug\Asteroids.exe.config
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Homework\Asteroids\Asteroids\bin\Debug\Asteroids.exe
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Homework\Asteroids\Asteroids\bin\Debug\Asteroids.pdb
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Homework\Asteroids\Asteroids\obj\Debug\Asteroids.csprojResolveAssemblyReference.cache
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Homework\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.CoreCompileInputs.cache
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Homework\Asteroids\Asteroids\obj\Debug\Asteroids.exe
+C:\Users\Тарас\Desktop\Geekbrains\С#Advantage\Homework\Asteroids\Asteroids\obj\Debug\Asteroids.pdb
