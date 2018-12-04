@@ -20,6 +20,7 @@ namespace AsteroidsGame
         static Game()
         {
         }
+
         public static void Init(Form form)
         {
             Graphics g;
@@ -29,7 +30,7 @@ namespace AsteroidsGame
             Height = form.ClientSize.Height;
             Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
             Load();
-            Timer timer = new Timer { Interval = 100 };
+            Timer timer = new Timer { Interval = 50 };
             timer.Start();
             timer.Tick += Timer_Tick;
 
@@ -73,6 +74,8 @@ namespace AsteroidsGame
                 _objs[i] = new Asteroid(new Point(i*2, i * 25), new Point(-i, 0), new Size(6, 3));
             for (int i = 3; i <4; i++)
                 _objs[i] = new Asteroid(new Point(i, i * 20), new Point(-i, 0), new Size(10, 10));
+            for (int i = 18; i < 19; i++)
+                _objs[i] = new Asteroid(new Point(i * 2, i * 25), new Point(-2*i, 0), new Size(6, 3));
         }
     }
 }
