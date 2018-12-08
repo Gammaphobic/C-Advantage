@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 
+// Создаём шаблон приложения, где подключаем модули
 namespace AsteroidsGame
 {
     class Program

@@ -4,5 +4,196 @@
         <name>Asteroids</name>
     </assembly>
     <members>
+        <member name="T:AsteroidsGame.AsteroidBG">
+            <summary>
+            Наследованный от BaseObject класс
+            </summary>
+        </member>
+        <member name="P:AsteroidsGame.AsteroidBG.Power">
+            <summary>
+            Свойство по умолчанию
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.AsteroidBG.#ctor(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Конструктор на основе конструктора базового класса
+            </summary>
+            <param name="pos"></param>
+            <param name="dir"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:AsteroidsGame.AsteroidBG.Update">
+            <summary>
+            Свой для этого класса перегруженный метод обновления 
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.AsteroidBG.Draw">
+            <summary>
+            Свой для этого класса перегруженный метод рисования 
+            </summary>
+        </member>
+        <member name="T:AsteroidsGame.BaseObject">
+            <summary>
+            Абстрактный класс со своими методами и параметрами
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.BaseObject.#ctor(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Конструктор с параметрами  точки, направления и размера для базового объекта
+            </summary>
+            <param name="pos"></param>
+            <param name="dir"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:AsteroidsGame.BaseObject.Draw">
+            <summary>
+            Абстрактный метод рисования для абстрактного класса
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.BaseObject.Update">
+            <summary>
+            Метод обновления, оперирующий координатами точки и направления для отрисовки следующего кадра
+            </summary>
+        </member>
+        <member name="T:AsteroidsGame.Bullet">
+            <summary>
+            Наследованный от BaseObject класс
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Bullet.#ctor(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Конструктор с параметрами  точки, направления и размера для базового объекта
+            </summary>
+            <param name="pos"></param>
+            <param name="dir"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:AsteroidsGame.Bullet.Draw">
+            <summary>
+            Метод рисования снарядов
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Bullet.Update">
+            <summary>
+            Свой для этого класса перегруженный метод обновления
+            </summary>
+        </member>
+        <member name="T:AsteroidsGame.Asteroid">
+            <summary>
+            Наследованный от BaseObject класс
+            </summary>
+        </member>
+        <member name="P:AsteroidsGame.Asteroid.Power">
+            <summary>
+            Свойство по умолчанию
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Asteroid.#ctor(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Конструктор на основе конструктора базового класса
+            </summary>
+            <param name="pos"></param>
+            <param name="dir"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:AsteroidsGame.Asteroid.Update">
+            <summary>
+            Свой для этого класса перегруженный метод обновления 
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Asteroid.Draw">
+            <summary>
+            Свой для этого класса перегруженный метод рисования 
+            </summary>
+        </member>
+        <member name="T:AsteroidsGame.Game">
+            <summary>
+            Класс, описывающий логику игры
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Game.#cctor">
+            <summary>
+            Статический конструктор класса
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Game.Init(System.Windows.Forms.Form)">
+            <summary>
+            Инициализация игрового поля
+            </summary>
+            <param name="form"></param>
+        </member>
+        <member name="M:AsteroidsGame.Game.Timer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Счётчик обновления кадров
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsteroidsGame.Game.Draw">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Game.Update">
+            <summary>
+            Метод, обновляющий каждый объект
+            </summary>
+        </member>
+        <member name="F:AsteroidsGame.Game._objs">
+            <summary>
+            Массив объектов
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Game.Load">
+            <summary>
+            Создание экземпляров классов
+            </summary>
+        </member>
+        <member name="T:AsteroidsGame.Planet">
+            <summary>
+            Наследованный от BaseObject класс
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Planet.#ctor(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Конструктор на основе конструктора базового класса
+            </summary>
+            <param name="pos"></param>
+            <param name="dir"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:AsteroidsGame.Planet.Draw">
+            <summary>
+            Свой для этого класса перегруженный метод рисования 
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Planet.Update">
+            <summary>
+            Свой для этого класса перегруженный метод обновления 
+            </summary>
+        </member>
+        <member name="T:AsteroidsGame.Star">
+            <summary>
+            Наследованный от BaseObject класс
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Star.#ctor(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Конструктор на основе конструктора базового класса
+            </summary>
+            <param name="pos"></param>
+            <param name="dir"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:AsteroidsGame.Star.Draw">
+            <summary>
+            Свой для этого класса перегруженный метод рисования
+            </summary>
+        </member>
+        <member name="M:AsteroidsGame.Star.Update">
+            <summary>
+            Свой для этого класса перегруженный метод обновления
+            </summary>
+        </member>
     </members>
 </doc>

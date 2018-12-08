@@ -11,7 +11,7 @@ namespace AsteroidsGame
     /// <summary>
     /// Наследованный от BaseObject класс
     /// </summary>
-    class Asteroid : BaseObject
+    class AsteroidBG : BaseObject 
     {
         /// <summary>
         /// Свойство по умолчанию
@@ -24,7 +24,7 @@ namespace AsteroidsGame
         /// <param name="pos"></param>
         /// <param name="dir"></param>
         /// <param name="size"></param>
-        public Asteroid(Point pos, Point dir, Size size) : base(pos, dir, size)
+        public AsteroidBG (Point pos, Point dir, Size size) : base(pos, dir, size)
         {
             Power = 1;
         }
@@ -43,7 +43,8 @@ namespace AsteroidsGame
         /// </summary>
         public override void Draw()
         {
-            Game.Buffer.Graphics.FillEllipse(Brushes.White, Pos.X, Pos.Y, Size.Width, Size.Height);
+            Game.Buffer.Graphics.DrawEllipse(Pens.White, Pos.X, Pos.Y, Size.Width, Size.Height);
         }
     }
 }
+
