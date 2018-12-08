@@ -72,10 +72,10 @@ namespace AsteroidsGame
         public static void Draw()
         {
             // Проверяем вывод графики
-            Buffer.Graphics.Clear(Color.Black);
-            Buffer.Graphics.DrawRectangle(Pens.White, new Rectangle(100, 100, 200, 200));
-            Buffer.Graphics.FillEllipse(Brushes.Wheat, new Rectangle(100, 100, 200, 200));
-            Buffer.Render();
+            //Buffer.Graphics.Clear(Color.Black);
+            //Buffer.Graphics.DrawRectangle(Pens.White, new Rectangle(100, 100, 200, 200));
+            //Buffer.Graphics.FillEllipse(Brushes.Wheat, new Rectangle(100, 100, 200, 200));
+            //Buffer.Render();
 
             Buffer.Graphics.Clear(Color.Black);
             foreach (BaseObject obj in _objs)
@@ -87,6 +87,7 @@ namespace AsteroidsGame
                 obj.Draw();
             }
             _planet.Draw();
+            _bullet.Draw();
             Buffer.Render();
                     
         }
@@ -100,10 +101,13 @@ namespace AsteroidsGame
             {
                 obj.Update();
             }
-            foreach (Asteroid obj in _asteroids)
+            foreach (Asteroid a in _asteroids)
             {
-                obj.Update();
+                a.Update();
+                if (a.Collision(_bullet)) { System.Media.SystemSounds.Hand.Play(); }
             }
+            _bullet.Update();
+        
             _planet.Update();
         }
 
