@@ -99,6 +99,8 @@ namespace AsteroidsGame
         /// </summary>
         public static void Update()
         {
+            var rnd1 = new Random();
+            int r1 = rnd1.Next(5, 50);
             foreach (BaseObject obj in _objs)
             {
                 obj.Update();
@@ -109,6 +111,7 @@ namespace AsteroidsGame
                 if (obj.Collision(_bullet))
                 {
                     System.Media.SystemSounds.Hand.Play();
+
                 }
                 _planet.Update();
                 _bullet.Update();
@@ -141,8 +144,8 @@ namespace AsteroidsGame
             for (var i = 0; i < _asteroids.Length; i++)
             {
                 int r = rnd.Next(10, 50);
-                _asteroids[i] = new Asteroid(new Point(2000, rnd.Next(0, Game.Height)), new Point(-r/4, r), new Size(r, r));
-                _asteroidBG = new AsteroidBG(new Point(2000, rnd.Next(0, Game.Height)), new Point(-4, 1), new Size(10, 10));
+                _asteroids[i] = new Asteroid(new Point(2000, rnd.Next(0, Game.Height)), new Point(-r/4, r), new Size(r, 200));
+                _asteroidBG = new AsteroidBG(new Point(2000, rnd.Next(0, Game.Height)), new Point(-4, 1), new Size(8, 8));
             }
             //for (int i = 0; i < _objs.Length; i++)
             //{

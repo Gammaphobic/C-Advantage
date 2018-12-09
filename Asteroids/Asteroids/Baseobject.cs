@@ -11,7 +11,7 @@ namespace AsteroidsGame
     /// <summary>
     /// Абстрактный класс со своими методами и параметрами
     /// </summary>
-    abstract class BaseObject :ICollision
+    abstract class BaseObject : ICollision
     {
         protected Point Pos;
         protected Point Dir;
@@ -53,6 +53,17 @@ namespace AsteroidsGame
         //}
         public bool Collision(ICollision o) => o.Rect.IntersectsWith(this.Rect);
         public Rectangle Rect => new Rectangle(Pos, Size);
+
+        public int X
+        {
+            get;
+            set;
+        }
+        public  int Y
+        {
+            get;
+            set;
+        }
 
     }
 }
