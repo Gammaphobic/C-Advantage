@@ -17,6 +17,7 @@ namespace AsteroidsGame
         private static Bullet _bullet;
         private static Asteroid[] _asteroids;
         private static Planet _planet;
+        private static AsteroidBG _asteroidBG;
         private static BufferedGraphicsContext _context;
         public static BufferedGraphics Buffer;
 
@@ -72,10 +73,10 @@ namespace AsteroidsGame
         public static void Draw()
         {
             // Проверяем вывод графики
-            Buffer.Graphics.Clear(Color.Black);
-            Buffer.Graphics.DrawRectangle(Pens.White, new Rectangle(100, 100, 200, 200));
-            Buffer.Graphics.FillEllipse(Brushes.Wheat, new Rectangle(100, 100, 200, 200));
-            Buffer.Render();
+            //Buffer.Graphics.Clear(Color.Black);
+            //Buffer.Graphics.DrawRectangle(Pens.White, new Rectangle(100, 100, 200, 200));
+            //Buffer.Graphics.FillEllipse(Brushes.Wheat, new Rectangle(100, 100, 200, 200));
+            //Buffer.Render();
 
             Buffer.Graphics.Clear(Color.Black);
             foreach (BaseObject obj in _objs)
@@ -87,6 +88,8 @@ namespace AsteroidsGame
                 obj.Draw();
             }
             _planet.Draw();
+            _bullet.Draw();
+            _asteroidBG.Draw();
             Buffer.Render();
                     
         }
@@ -103,8 +106,14 @@ namespace AsteroidsGame
             foreach (Asteroid obj in _asteroids)
             {
                 obj.Update();
+                if (obj.Collision(_bullet))
+                {
+                    System.Media.SystemSounds.Hand.Play();
+                }
+                _planet.Update();
+                _bullet.Update();
+                _asteroidBG.Update();
             }
-            _planet.Update();
         }
 
         /// <summary>
@@ -121,17 +130,19 @@ namespace AsteroidsGame
             _objs = new BaseObject[30];
             _bullet = new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1));
             _asteroids = new Asteroid[5];
-            _planet = new Planet(new Point(1000, 60), new Point(-2, 0), new Size(20, 20)); 
+            _planet = new Planet(new Point(2000, 60), new Point(-1, 0), new Size(40, 40));
+            
             var rnd = new Random();
             for (var i = 0; i < _objs.Length; i++)
             {
                 int r = rnd.Next(5, 50);
-                _objs[i] = new Star(new Point(1000, rnd.Next(0, Game.Height)), new Point(-r, r), new Size(3, 3));
+                _objs[i] = new Star(new Point(2000, rnd.Next(0, Game.Height)), new Point(-r, r), new Size(3, 3));
             }
             for (var i = 0; i < _asteroids.Length; i++)
             {
-                int r = rnd.Next(5, 50);
-                _asteroids[i] = new Asteroid(new Point(1000, rnd.Next(0, Game.Height)), new Point(-r/5, r), new Size(r, r));
+                int r = rnd.Next(10, 50);
+                _asteroids[i] = new Asteroid(new Point(2000, rnd.Next(0, Game.Height)), new Point(-r/4, r), new Size(r, r));
+                _asteroidBG = new AsteroidBG(new Point(2000, rnd.Next(0, Game.Height)), new Point(-4, 1), new Size(10, 10));
             }
             //for (int i = 0; i < _objs.Length; i++)
             //{

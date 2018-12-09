@@ -11,7 +11,7 @@ namespace AsteroidsGame
     /// <summary>
     /// Абстрактный класс со своими методами и параметрами
     /// </summary>
-    abstract class BaseObject 
+    abstract class BaseObject :ICollision
     {
         protected Point Pos;
         protected Point Dir;
@@ -42,15 +42,17 @@ namespace AsteroidsGame
         /// <summary>
         /// Метод обновления, оперирующий координатами точки и направления для отрисовки следующего кадра
         /// </summary>
-        public virtual void Update()
-        {
-            Pos.X = Pos.X + Dir.X;
-            Pos.Y = Pos.Y + Dir.Y;
-            if (Pos.X < 0) Dir.X = -Dir.X;
-            if (Pos.X > Game.Width) Dir.X = -Dir.X;
-            if (Pos.Y < 0) Dir.Y = -Dir.Y;
-            if (Pos.Y > Game.Height) Dir.Y = -Dir.Y;
-        }
+        public abstract void Update();
+        //{
+        //    Pos.X = Pos.X + Dir.X;
+        //    Pos.Y = Pos.Y + Dir.Y;
+        //    if (Pos.X < 0) Dir.X = -Dir.X;
+        //    if (Pos.X > Game.Width) Dir.X = -Dir.X;
+        //    if (Pos.Y < 0) Dir.Y = -Dir.Y;
+        //    if (Pos.Y > Game.Height) Dir.Y = -Dir.Y;
+        //}
+        public bool Collision(ICollision o) => o.Rect.IntersectsWith(this.Rect);
+        public Rectangle Rect => new Rectangle(Pos, Size);
 
     }
 }

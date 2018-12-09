@@ -26,7 +26,7 @@ namespace AsteroidsGame
         /// <param name="size"></param>
         public AsteroidBG (Point pos, Point dir, Size size) : base(pos, dir, size)
         {
-            Power = 1;
+           
         }
 
         /// <summary>
@@ -36,6 +36,9 @@ namespace AsteroidsGame
         {
             Pos.X = Pos.X + Dir.X;
             if (Pos.X < 0) Pos.X = Game.Width + Size.Width;
+            Pos.Y = Pos.Y + Dir.Y;
+            if (Pos.Y > Game.Height) Pos.Y = 0+Size.Height;
+
         }
 
         /// <summary>
