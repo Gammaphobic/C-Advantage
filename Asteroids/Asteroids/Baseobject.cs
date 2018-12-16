@@ -64,6 +64,8 @@ namespace AsteroidsGame
             get;
             set;
         }
+        public delegate void Message();
+
 
     }
 }

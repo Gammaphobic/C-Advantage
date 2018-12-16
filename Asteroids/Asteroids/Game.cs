@@ -12,7 +12,7 @@ namespace AsteroidsGame
     /// <summary>
     /// Класс, описывающий логику игры
     /// </summary>
-    class Game
+    static class Game
     {
         private static Bullet _bullet;
         private static Asteroid[] _asteroids;
@@ -20,6 +20,9 @@ namespace AsteroidsGame
         private static AsteroidBG _asteroidBG;
         private static BufferedGraphicsContext _context;
         public static BufferedGraphics Buffer;
+
+        private static Timer _timer = new Timer();
+        public static Random Rnd = new Random();
 
         // Свойства
         // Ширина ивысота игрового поля
@@ -55,14 +58,27 @@ namespace AsteroidsGame
             Timer timer = new Timer { Interval = 50 };
             timer.Start();
             timer.Tick += Timer_Tick;
+            form.KeyDown += Form_KeyDown;
+            Ship.MessageDie += Finish;
+
 
         }
-        /// <summary>
-        /// Счётчик обновления кадров
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void Timer_Tick(object sender, EventArgs e)
+
+
+        private static void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+                _bullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1));
+            if (e.KeyCode == Keys.Up) _ship.Up();
+            if (e.KeyCode == Keys.Down) _ship.Down();
+        }
+
+            /// <summary>
+            /// Счётчик обновления кадров
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            private static void Timer_Tick(object sender, EventArgs e)
         {
             Draw(); Update();
         }
@@ -83,15 +99,18 @@ namespace AsteroidsGame
             {
                 obj.Draw();
             }
-            foreach (Asteroid obj in _asteroids)
+            foreach (Asteroid a in _asteroids)
             {
-                obj.Draw();
+                a?.Draw();
             }
             _planet.Draw();
-            _bullet.Draw();
+            _bullet?.Draw();
+            _ship?.Draw();
             _asteroidBG.Draw();
+            if (_ship != null)
+            Buffer.Graphics.DrawString("Energy:" + _ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
             Buffer.Render();
-                    
+
         }
 
         /// <summary>
@@ -114,7 +133,7 @@ namespace AsteroidsGame
 
                 }
                 _planet.Update();
-                _bullet.Update();
+                _bullet?.Update();
                 _asteroidBG.Update();
             }
         }
@@ -160,6 +179,31 @@ namespace AsteroidsGame
             //    _objs[i] = new AsteroidBG(new Point(i, i * 20), new Point(-i, 0), new Size(10, 10));
             //for (int i = 18; i < 19; i++)
             //    _objs[i] = new AsteroidBG(new Point(i * 2, i * 25), new Point(-2 * i, 0), new Size(8, 4));
+
+            for (var i = 0; i < _asteroids.Length; i++)
+            {
+                if (_asteroids[i] == null)
+                    continue;
+                _asteroids[i].Update();
+                if (_bullet != null && _bullet.Collision(_asteroids[i]))
+                { System.Media.SystemSounds.Hand.Play();
+                    _asteroids[i] = null; _bullet = null;
+                    continue;
+                } if (!_ship.Collision(_asteroids[i]))
+                    continue;
+                var rnd1 = new Random();
+                _ship?.EnergyLow(rnd.Next(1, 10));
+                System.Media.SystemSounds.Asterisk.Play();
+                if (_ship.Energy <= 0) _ship?.Die();
+            }
+        }
+
+        private static Ship _ship = new Ship(new Point(10, 400), new Point(5, 5), new Size(10, 10));
+        public static void Finish()
+        {
+            _timer.Stop();
+            Buffer.Graphics.DrawString("The End", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
+            Buffer.Render();
         }
     }
 }
