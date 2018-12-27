@@ -14,6 +14,7 @@ namespace AsteroidsGame
     /// </summary>
     static class Game
     {
+        private static List<Bullet> _bullets = new List<Bullet>();
         private static Bullet _bullet;
         private static Asteroid[] _asteroids;
         private static Planet _planet;
@@ -68,7 +69,7 @@ namespace AsteroidsGame
         private static void Form_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
-                _bullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1));
+                _bullets.Add ( new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1)));
             if (e.KeyCode == Keys.Up) _ship.Up();
             if (e.KeyCode == Keys.Down) _ship.Down();
         }
@@ -104,7 +105,10 @@ namespace AsteroidsGame
                 a?.Draw();
             }
             _planet.Draw();
-            _bullet?.Draw();
+            foreach (Bullet b in _bullets)
+            {
+                b.Draw();
+            }
             _ship?.Draw();
             _asteroidBG.Draw();
             if (_ship != null)
@@ -126,15 +130,37 @@ namespace AsteroidsGame
             }
             foreach (Asteroid obj in _asteroids)
             {
-                obj.Update();
-                if (obj.Collision(_bullet))
-                {
-                    System.Media.SystemSounds.Hand.Play();
+                //obj.Update();
+                //if (obj.Collision(_bullet))
+                //{
+                //    System.Media.SystemSounds.Hand.Play();
 
-                }
+                //}
                 _planet.Update();
-                _bullet?.Update();
+            //foreach (Bullet b in _bullets )
+            //    _bullet?.Update();
                 _asteroidBG.Update();
+            }
+
+
+            foreach (Bullet b in _bullets) b.Update();
+            for (var i = 0; i < _asteroids.Length; i++)
+            {
+                if (_asteroids[i] == null) continue;
+                _asteroids[i].Update();
+                for (int j = 0; j < _bullets.Count; j++)
+                    if (_asteroids[i] != null && _bullets[j].Collision(_asteroids[i]))
+                    {
+                        System.Media.SystemSounds.Hand.Play();
+                        _asteroids[i] = null;
+                        _bullets.RemoveAt(j);
+                        j--;
+                    }
+                if (_asteroids[i] == null || !_ship.Collision(_asteroids[i]))
+                    continue;
+                _ship.EnergyLow(Rnd.Next(1, 10));
+                System.Media.SystemSounds.Asterisk.Play();
+                if (_ship.Energy <= 0) _ship.Die();
             }
         }
 
@@ -150,7 +176,7 @@ namespace AsteroidsGame
         {
 
             _objs = new BaseObject[30];
-            _bullet = new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1));
+           
             _asteroids = new Asteroid[5];
             _planet = new Planet(new Point(2000, 60), new Point(-1, 0), new Size(40, 40));
             
@@ -205,5 +231,6 @@ namespace AsteroidsGame
             Buffer.Graphics.DrawString("The End", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
             Buffer.Render();
         }
+       
     }
 }
